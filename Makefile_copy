@@ -1,0 +1,55 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: cmambwe <marvin@42.fr>                     +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/09/21 14:49:31 by cmambwe           #+#    #+#              #
+#    Updated: 2019/09/21 14:49:35 by cmambwe          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+NAME = libft.a
+
+CFLAGS = -Wall -Werror -Wextra -I $(INCLUDES)
+
+INCLUDES = libft.h
+SRC =  ft_isdigit.c \
+		ft_strnstr.c \
+		ft_isprint.c \
+		ft_strlcat.c \
+		ft_strrchr.c \
+		ft_isalnum.c \
+		ft_strcat.c \
+		ft_strlen.c \
+		ft_strstr.c \
+		ft_isalpha.c \
+		ft_strchr.c \
+		ft_strncmp.c \
+		ft_tolower.c \
+		ft_isascii.c \
+		ft_strcmp.c \
+		ft_strncpy.c \
+		ft_toupper.c \
+
+
+OBJ = $(SRC:.c=.o)
+
+all: $(NAME)
+
+$(NAME):
+	gcc $(CFLAGS) -c $(SRC)
+	ar rc $(NAME) $(OBJ)
+	ranlib $(NAME)
+
+clean:
+	/bin/rm -f *.o
+	echo "Libft: clean: objects cleaned."
+
+fclean: clean
+	/bin/rm -f $(NAME)
+	echo "Libft: fclean: library deleted"
+
+re: fclean all
+
+.PHONY: clean fclean all re
